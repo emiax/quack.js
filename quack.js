@@ -1,7 +1,8 @@
 var QUACK = (function () {
+    'use strict';
 
     var $ = {};
-    
+
     /**
      * convert an object with a length to an array!
      */
@@ -36,7 +37,7 @@ var QUACK = (function () {
 
     $.createClass = function () {
 
-        var args = $.toArray(arguments), parent, implementation, init;
+        var args = $.toArray(arguments), parent, implementation, C;
 
         if (arguments.length > 1) {
             parent = arguments[0].prototype;
@@ -47,7 +48,7 @@ var QUACK = (function () {
         }
 
         // default constructor
-        var C = function () {};
+        C = function () {};
 
         if (typeof implementation.init === 'function') {
             C = function () {

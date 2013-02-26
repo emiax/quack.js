@@ -39,12 +39,12 @@ var QUACK = (function () {
 
         var args = $.toArray(arguments), parent, implementation, C;
 
-        if (arguments.length > 1) {
-            parent = arguments[0].prototype;
-            implementation = arguments[1];
+        if (args.length > 1) {
+            parent = args[0].prototype;
+            implementation = args[1];
         } else {
             parent = {};
-            implementation = arguments[0];
+            implementation = args[0];
         }
 
         // default constructor
@@ -53,12 +53,12 @@ var QUACK = (function () {
         if (typeof implementation.init === 'function') {
             C = function () {
                 // use new constructor implemention
-                implementation.init.apply(this, arguments);
+                implementation.init.apply(this, args);
             };
         } else if (typeof parent.init === 'function') {
             C = function () {
                 // inherit constructor from parent
-                parent.init.apply(this, arguments);
+                parent.init.apply(this, args);
             };
         }
 

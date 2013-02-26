@@ -1,4 +1,4 @@
-QUACK = (function () {
+var QUACK = (function () {
 
     var $ = {};
     

@@ -4,8 +4,8 @@ module.exports = (function () {
     var $ = {};
 
     /**
-* convert an object with a length to an array!
-*/
+    * convert an object with a length to an array!
+    */
 
     $.toArray = function (pseudoArray) {
         var a = new Array(pseudoArray.length),
@@ -19,21 +19,21 @@ module.exports = (function () {
     }
     
     /**
-* Create class
-*
-* usage example:
-*
-* createClass({
-* init: function () { <---- 'constructor'
-* ...
-* }
-* });
-* createClass(Parent, {
-* foo: function () {
-* ...
-* }
-* });
-*/
+    * Create class
+    *
+    * usage example:
+    *
+    * createClass({
+    * init: function () { <---- 'constructor'
+    * ...
+    * }
+    * });
+    * createClass(Parent, {
+    * foo: function () {
+    * ...
+    * }
+    * });
+    */
 
     $.createClass = function () {
 

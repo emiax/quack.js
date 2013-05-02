@@ -1,11 +1,11 @@
-var QUACK = (function () {
+module.exports = (function () {
     'use strict';
 
     var $ = {};
 
     /**
-     * convert an object with a length to an array!
-     */
+* convert an object with a length to an array!
+*/
 
     $.toArray = function (pseudoArray) {
         var a = new Array(pseudoArray.length),
@@ -19,31 +19,31 @@ var QUACK = (function () {
     }
     
     /**
-     * Create class
-     * 
-     * usage example:
-     *
-     * createClass({
-     *      init: function () { <---- 'constructor'
-     *         ...
-     *      }
-     * });
-     * createClass(Parent, {
-     *      foo: function () {
-     *         ...
-     *      }
-     * });
-     */
+* Create class
+*
+* usage example:
+*
+* createClass({
+* init: function () { <---- 'constructor'
+* ...
+* }
+* });
+* createClass(Parent, {
+* foo: function () {
+* ...
+* }
+* });
+*/
 
     $.createClass = function () {
 
-        var args = $.toArray(arguments), parent, implementation, C;
+        var args = $.toArray(arguments), Parent, implementation, C;
 
         if (args.length > 1) {
-            parent = args[0].prototype;
+            Parent = args[0];
             implementation = args[1];
         } else {
-            parent = {};
+            Parent = function () {};
             implementation = args[0];
         }
 
@@ -53,19 +53,20 @@ var QUACK = (function () {
         if (typeof implementation.init === 'function') {
             C = function () {
                 // use new constructor implemention
-                implementation.init.apply(this, args);
+                implementation.init.apply(this, arguments);
             };
-        } else if (typeof parent.init === 'function') {
+        } else if (typeof Parent.init === 'function') {
             C = function () {
                 // inherit constructor from parent
-                parent.init.apply(this, args);
+                Parent.init.apply(this, arguments);
             };
         }
 
-        C.prototype = parent;
+        C.prototype = Object.create(Parent.prototype);
+        
 
         // Inherit from parent
-        Object.keys(parent).forEach(function (k) {
+        Object.keys(Parent).forEach(function (k) {
             C[k] = C.prototype[k]; // = parent[k];
         });
 

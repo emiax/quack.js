@@ -1,4 +1,4 @@
-// Quack.js in requirejs flavour. Feel free to modify!
+// Quack.js in require.js flavour. Feel free to modify!
 
 define(function() {
 
